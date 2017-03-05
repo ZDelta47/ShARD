@@ -10,3 +10,6 @@ Goal #1: One HUD configured with Wii Nunchuck controller with simple program
  - Set up 0.96" display to take graphics input from the processing IDE
  - Set up Nunchuck controller with processing and Arduino
  - Connect Nunchuck and display
+ 
+ 
+ https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/overview
