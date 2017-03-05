@@ -67,7 +67,7 @@ void ifstatements() {
   }
 
   //-------------------------------------------------
-  if (sensorValue2 <= 700 && sensorValue2 >= 300 && sensorValue <= 700 && sensorValue >= 300) {
+  if (sensorValue2 <= 400 && sensorValue2 >= 300 && sensorValue <= 400 && sensorValue >= 300) {
     neutral = true;
   }
 
@@ -113,13 +113,13 @@ void mainMenu() {
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(20, 0);
-  display.println("uneM niaM");
+  display.println("Main menu");
   display.setCursor(20, 8);
-  display.println("erauqS dna elcriC");
+  display.println("ping-pong");
   display.setCursor(20, 16);
-  display.println("tiderC");
+  display.println("Credit");
   display.setCursor(20, 24);
-  display.println("tixE");
+  display.println("Exit");
   display.display();
 }
 void grid() {
@@ -165,12 +165,45 @@ void chess() {
     }
   }
 }
-
+void coordinate() {
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.println(coordX1);
+  display.setCursor(10, 0);
+  display.println(coordY1);
+  display.setCursor(110, 0);
+  display.println(coordX2);
+  display.setCursor(118, 0);
+  display.println(coordY2);
+}
+void wcursor() {
+  if (input[0]) {
+    delay(50);
+  }
+  else {
+    if (input[1] == 1) {
+      coordX1++;
+      delay(100);
+    }
+    else {
+      coordX1--;
+    }
+    if (input[2] == 0) {
+      coordY1++;
+    }
+    else {
+      coordY1--;
+    }
+  }
+}
 void pingPong() {
 
   display.clearDisplay();
   grid();
-chess();
+  chess();
+  wcursor();
+  coordinate();
 
 
 
@@ -182,15 +215,15 @@ void Credit() {
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(20, 0);
-  display.println("tirrtC");
+  display.println("Credit");
   display.setCursor(20, 8);
-  display.println("nasaH reehaZ");
+  display.println("Zaheer Hasan");
   display.setCursor(20, 16);
-  display.println("dammahoM aiZ");
+  display.println("Zia Mohammad");
   display.setCursor(20, 24);
-  display.println("ouG gnehcuH");
+  display.println("Hucheng Guo");
   display.setCursor(20, 80);
-  display.println("tixE");
+  display.println("Exit");
   display.display();
 }
 void pointer() {
@@ -199,15 +232,49 @@ void pointer() {
   display.display();
   delay(200);
 }
+void data() {
+  //const char *msg = char(coordX1*20+coordY1);
+  uint8_t buf[VW_MAX_MESSAGE_LEN];
+  uint8_t buflen = VW_MAX_MESSAGE_LEN;
 
+  // Wait for a message
+  //digitalWrite(transmit_en_pin,0);
+  vw_wait_rx();
+
+  if (vw_get_message(buf, &buflen)) // Non-blocking
+  {
+    int i;
+    char *msg = char(coordX1*20+coordY1);
+
+    digitalWrite(13, true); // Flash a light to show received good message
+    // Message with a good checksum received, dump it.
+    Serial.print("Got: ");
+
+    for (i = 0; i < buflen; i++)
+    {
+      Serial.print(buf[i], HEX);
+      Serial.print(" ");
+    }
+    Serial.println("");
+
+    // Send a reply
+    //digitalWrite(transmit_en_pin,1);
+    delay(100);
+    vw_send((uint8_t *)msg, strlen(msg));
+
+    //digitalWrite(13, false);
+  }
+}
 void setup() {
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.display();
   delay(100);
   display.clearDisplay();
   Serial.begin(9600);
-  
+
   mainMenu();
+  pingPong();
+  while(1);
 
 }
 void loop() {
@@ -217,8 +284,6 @@ void loop() {
   for (int i = 0; i < 4; i++) {
     Serial.print(input[i]);
   }
-  Serial.println(sensorValue);
-  Serial.println(sensorValue2);
 
   if (input[0] == 1) {
     delay(40);
@@ -245,9 +310,9 @@ void loop() {
         column--;
       }
       else if (row == 1) {
-        //mode = 1;
-        //column++;
-        //pingPong();
+        mode = 1;
+        column++;
+        pingPong();
       }
       else if (row == 2) {
         mode = 2;
