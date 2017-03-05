@@ -101,7 +101,7 @@ void ifstatements(){
   }
 
   //-------------------------------------------------
-  if (sensorValue2 <= 350 && sensorValue2 >= 330 && sensorValue <= 350 && sensorValue >= 330){
+  if (sensorValue2 <= 400 && sensorValue2 >= 300 && sensorValue <= 400 && sensorValue >= 300){
     neutral = true;
   }
   
@@ -109,19 +109,19 @@ void ifstatements(){
     neutral = false;
   }
 
-  if (sensorValue2 >  350){   //The Left Right
+  if (sensorValue2 >  400){   //The Left Right
   leftright = false;      // Right Enable
   }
   
-  if (sensorValue2 < 330){
+  if (sensorValue2 < 300){
   leftright = true;      //Left Enable
   }
 
   //------------------------------------------------
-  if (sensorValue > 350){   //The Up Down
+  if (sensorValue > 400){   //The Up Down
   updown = false;       //Up Enable
   }
-  if (sensorValue < 330){
+  if (sensorValue < 300){
   updown = true;        //Down Enable
   }
 }
