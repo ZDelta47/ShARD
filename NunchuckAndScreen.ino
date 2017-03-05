@@ -25,9 +25,11 @@ All text above, and the splash screen must be included in any redistribution
 //   Parameters for the Controller:
 // These constants won't change.  They're used to give names
 // to the pins used:
-const int analogInPin = A1;  // Up Down
-const int analogInPin2 = A2;  //Left Right
-const int analogInPin3 = A0;  // button
+const int analogInPin = A1;  // Up Down       white
+const int analogInPin2 = A2;  //Left Right    yellow
+const int analogInPin3 = A0;  // button       green
+// brown = gnd
+//pink = vcc
 
 const int analogOutPin = 9; // Analog output pin that the LED is attached to
 const int analogOutPin2 = 10;
