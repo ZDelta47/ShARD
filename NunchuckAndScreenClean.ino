@@ -7,21 +7,8 @@
  modified again 3/4/2017   by Zia Mohammad, Zaher Hasan, & Neo
 
  Some elements in the example code are in the public domain.
+*/
 
-This includes an example for our Monochrome OLEDs based on SSD1306 drivers
-
-Pick one up today in the adafruit shop!
-  ------> http://www.adafruit.com/category/63_98
-This example is for a 128x64 size display using I2C to communicate
-3 pins are required to interface (2 I2C and one reset)
-Adafruit invests time and resources providing this open source code, 
-please support Adafruit and open-source hardware by purchasing 
-products from Adafruit!
-Written by Limor Fried/Ladyada  for Adafruit Industries.  
-BSD license, check license.txt for more information
-All text above, and the splash screen must be included in any redistribution
-
- */
 //   Parameters for the Controller:
 // These constants won't change.  They're used to give names
 // to the pins used:
@@ -60,7 +47,7 @@ void ifstatements(){
   }
 
   //-------------------------------------------------
-  if (sensorValue2 <= 350 && sensorValue2 >= 330 && sensorValue <= 350 && sensorValue >= 330){
+  if (sensorValue2 <= 400 && sensorValue2 >= 300 && sensorValue <= 400 && sensorValue >= 300){
     neutral = true;
   }
   
@@ -68,19 +55,19 @@ void ifstatements(){
     neutral = false;
   }
 
-  if (sensorValue2 >  350){   //The Left Right
+  if (sensorValue2 >  400){   //The Left Right
   leftright = false;      // Right Enable
   }
   
-  if (sensorValue2 < 330){
+  if (sensorValue2 < 300){
   leftright = true;      //Left Enable
   }
 
   //------------------------------------------------
-  if (sensorValue > 350){   //The Up Down
+  if (sensorValue > 400){   //The Up Down
   updown = false;       //Up Enable
   }
-  if (sensorValue < 330){
+  if (sensorValue < 300){
   updown = true;        //Down Enable
   }
   boolean input [4] = {updown, leftright, button, neutral};
