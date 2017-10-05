@@ -14,4 +14,4 @@ Goal #1: One HUD configured with Wii Nunchuck controller with simple program
  
  https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/overview
  
-Update (10/05/2017): This project won a prize for the "Best Communication Project" by the Harris Corporation at Ohio State University's Makeathon 2017.is still under development. This project is currently under development to be refined and updated so that future students may take advantage of our work and develop their own functions for the devices.
+Update (10/05/2017): This project won a prize for the "Best Communication Project" by the Harris Corporation at Ohio State University's Makeathon 2017. It is still under development. This project is currently under development to be refined and updated so that future students may take advantage of our work and develop their own functions for the devices.
